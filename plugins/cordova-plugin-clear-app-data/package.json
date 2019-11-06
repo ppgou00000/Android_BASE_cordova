@@ -1,0 +1,36 @@
+{
+    "name": "cordova-plugin-clear-app-data",
+    "version": "0.0.3",
+    "author": {
+        "name": "Diego Olguin",
+        "email": "diego.ot@gmail.com",
+        "url": "http://www.dot-bo.com"
+    },
+    "homepage": "https://github.com/thorvx/cordova-plugin-clear-app-data",
+    "description": "Cordova plugin to clear locally persistent user data on Android and iOS.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thorvx/cordova-plugin-clear-app-data.git"
+    },
+    "bugs": {
+        "url": "https://github.com/thorvx/cordova-plugin-clear-app-data/issues"
+    },
+    "keywords": [
+        "cordova",
+        "webview",
+        "cache",
+        "clear",
+        "ios",
+        "android",
+        "cordova-ios",
+        "cordova-android"
+    ],
+    "cordova": {
+        "id": "cordova-plugin-clear-app-data",
+        "platforms": [
+            "ios",
+            "android"
+        ]
+    }
+}

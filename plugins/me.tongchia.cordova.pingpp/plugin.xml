@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="me.tongchia.cordova.pingpp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        version="1.0.1">
+
+    <name>Pingpp</name>
+    <description>cordova plugin for ping++</description>
+    <author>tongchia</author>
+    <keywords>pingpp,pingxx,ping++,pingppone,alipay,weixin,bdwallet,unionpay,applepay</keywords>
+    <license>Apache 2.0</license>
+    <engines>
+        <engine name="cordova" version=">=6.0.0"/>
+    </engines>
+    <js-module src="www/pingpp.js" name="pingpp">
+        <clobbers target="pingpp" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PingppPlugin">
+                <param name="android-package" value="me.tongchia.cordova.PingppPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity
+                    android:name="com.pingplusplus.android.PaymentActivity"
+                    android:configChanges="orientation|screenSize"
+                    android:launchMode="singleTop"
+                    android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            <activity-alias
+                    android:name=".wxapi.WXPayEntryActivity"
+                    android:exported="true"
+                    android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+            <activity
+                    android:name="com.alipay.sdk.app.H5PayActivity"
+                    android:configChanges="orientation|keyboardHidden|navigation"
+                    android:exported="false"
+                    android:screenOrientation="behind" />
+            <activity
+                    android:name="com.alipay.sdk.auth.AuthActivity"
+                    android:configChanges="orientation|keyboardHidden|navigation"
+                    android:exported="false"
+                    android:screenOrientation="behind" />
+        </config-file>
+
+        <source-file src="src/android/PingppPlugin.java" target-dir="src/me/tongchia/cordova/"/>
+        <source-file src="sdk/android/lib/pingpp/libs/alipaySdk-20160223.jar" target-dir="libs"/>
+        <source-file src="sdk/android/lib/pingpp/libs/libammsdk.jar" target-dir="libs"/>
+        <source-file src="sdk/android/lib/pingpp/libs/libpingpp-2.1.3.jar" target-dir="libs"/>
+    </platform>
+
+    <platform name="ios">
+        <framework src="CFNetwork.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="libc++.tbd" />
+        <framework src="libz.tbd" />
+        <framework src="libsqlite3.0.tbd" />
+        <framework src="libstdc++.tbd" />
+
+        <resource-file src="sdk/ios/lib/Channels/Alipay/AlipaySDK.bundle"/>
+        <framework src="sdk/ios/lib/Channels/Alipay/AlipaySDK.framework" custom="true"/>
+        <source-file src="sdk/ios/lib/Channels/Alipay/libpingpp+alipay.a" framework="true"/>
+        <source-file src="sdk/ios/lib/Channels/Wx/libpingpp+wx.a" framework="true"/>
+        <source-file src="sdk/ios/lib/Channels/Wx/libWeChatSDK.a" framework="true"/>
+        <header-file src="sdk/ios/lib/Channels/Wx/WXApi.h" />
+        <header-file src="sdk/ios/lib/Channels/Wx/WXApiObject.h" />
+        <resource-file src="sdk/ios/lib/Pingpp.bundle"/>
+        <source-file src="sdk/ios/lib/libpingppcore.a" framework="true"/>
+        <header-file src="sdk/ios/lib/Pingpp.h"/>
+        <source-file src="sdk/ios/lib/Dependencies/Network/libpingpp+network.a" framework="true"/>
+        <header-file src="sdk/ios/lib/Dependencies/Network/PingppURLResponse.h"/>
+        <header-file src="src/ios/PingppPlugin.h" target-dir="PingppPlugin"/>
+        <source-file src="src/ios/PingppPlugin.m" target-dir="PingppPlugin"/>
+
+        <config-file target="config.xml" parent="/widget">
+            <feature name="PingppPlugin">
+                <param name="ios-package" value="PingppPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>weixin</string>
+                <string>wechat</string>
+                <string>alipay</string>
+            </array>
+        </config-file>
+
+        <info>
+            You need to add URL_SCHEME to your iOS project.
+        </info>
+    </platform>
+
+    <hook type="before_plugin_install" src="scripts/clone_pingpp_sdk.js" />
+</plugin>
