@@ -40,8 +40,9 @@ android{
 	File strFile=new File("app/Keystore/Release/release.jks")
 	storeFile file(strFile)
 	storePassword "123456"
-	keyPassword "123456"
 	keyAlias "releasekey"
+	keyPassword "123456"
+
 	}
 	}
 	buildTypes{
