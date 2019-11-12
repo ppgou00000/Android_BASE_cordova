@@ -41,7 +41,7 @@ android{
 	storeFile file(strFile)
 	storePassword "123456"
 	keyPassword "123456"
-	keyAlias "debugkey"
+	keyAlias "releasekey"
 	}
 	}
 	buildTypes{
