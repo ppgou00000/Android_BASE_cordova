@@ -18,6 +18,39 @@
 */
 
 apply plugin: 'com.android.application'
+android{
+    compileSdkVersion 21
+	buildToolsVersion "21.1.0"
+	defaultConfig{
+	applicationId"com.test.example"
+	minSdkVersion 14
+	targetSdkVersion 21
+	versionCode 1
+	versionName "1.0"
+	}
+	signingConfigs{
+	debug{
+	File strFile=new File("app/Keystore/Debug/debug.jks")
+	storeFile file(strFile)
+	storePassword "123456"
+	keyAlias "debugkey"
+	keyPassword "123456"
+	}
+	release{
+	File strFile=new File("app/Keystore/Release/release.jks")
+	storeFile file(strFile)
+	storePassword "123456"
+	keyPassword "123456"
+	keyAlias "debugkey"
+	}
+	}
+	buildTypes{
+	release{signingConfig signingConfigs.release
+	runProguard false
+	proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
+	}
+}
+}
 
 buildscript {
     repositories {
