@@ -30,14 +30,14 @@ android{
 	}
 	signingConfigs{
 	debug{
-	File strFile=new File("app/Keystore/Debug/debug.jks")
+	File strFile=new File("/Keystore/Debug/debug.jks")
 	storeFile file(strFile)
 	storePassword "123456"
 	keyAlias "debugkey"
 	keyPassword "123456"
 	}
 	release{
-	File strFile=new File("app/Keystore/Release/release.jks")
+	File strFile=new File("/Keystore/Release/release.jks")
 	storeFile file(strFile)
 	storePassword "123456"
 	keyAlias "releasekey"
