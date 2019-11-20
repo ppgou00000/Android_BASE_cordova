@@ -1,0 +1,52 @@
+{
+  "_from": "cordova-plugin-bd-geolocation",
+  "_id": "cordova-plugin-bd-geolocation@8.5.0",
+  "_inBundle": false,
+  "_integrity": "sha1-XjWgEYNXTNIUUFKZJqIdeaccGdQ=",
+  "_location": "/cordova-plugin-bd-geolocation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-bd-geolocation",
+    "name": "cordova-plugin-bd-geolocation",
+    "escapedName": "cordova-plugin-bd-geolocation",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/cordova-plugin-bd-geolocation/download/cordova-plugin-bd-geolocation-8.5.0.tgz",
+  "_shasum": "5e35a01183574cd21450529926a21d79a71c19d4",
+  "_spec": "cordova-plugin-bd-geolocation",
+  "_where": "F:\\base\\Android_BASE_cordova",
+  "author": {
+    "name": "赖祥燃"
+  },
+  "bugs": {
+    "url": "https://github.com/laixiangran/cordova-plugin-bd-geolocation/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Baidu Geolocation for Cordova",
+  "homepage": "https://github.com/laixiangran/cordova-plugin-bd-geolocation#readme",
+  "keywords": [
+    "baidu",
+    "geolocation",
+    "cordova"
+  ],
+  "license": "MIT",
+  "main": "Geolocation.js",
+  "name": "cordova-plugin-bd-geolocation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laixiangran/cordova-plugin-bd-geolocation.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "8.5.0"
+}

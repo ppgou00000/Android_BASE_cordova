@@ -7,10 +7,8 @@
 
 <body>
 <div class="app">
-    <h1>MediaCapture插件</h1>
-    <div class="line">
-        <button id="record">开始录音</button>
-    </div>
+    <h1>定位插件</h1>
+
 
 </div>
 <script type="text/javascript" src="cordova.js"></script>
@@ -51,19 +49,19 @@
 <script>
 
     //检测网络状态
-    document.addEventListener('online', function () {
-        alert('网络连接成功');
-        if (navigator.connection.type == Connection.WIFI) {
-            alert('已经切换到Wifi网络');
-            if (navigator.connection.type == Connection.CELL_4G) {
-                alert('已经切换到4G网络')
-            }
-        }
-    }, false);
+  //  document.addEventListener('online', function () {
+   //     alert('网络连接成功');
+   //     if (navigator.connection.type == Connection.WIFI) {
+   //         alert('已经切换到Wifi网络');
+  //          if (navigator.connection.type == Connection.CELL_4G) {
+  //              alert('已经切换到4G网络')
+  //          }
+  //      }
+ //   }, false);
     //网络断开
-    document.addEventListener('offline', function () {
-        alert('网络已经断开');
-    }, false);
+ //   document.addEventListener('offline', function () {
+ //       alert('网络已经断开');
+//    }, false);
 
     function fingerTest() {
         Fingerprint.isAvailable(function () {
@@ -512,55 +510,7 @@
 <br>
 
 <br>
-<button style="font-size:  30px;" onclick="playAudio()">PLAY</button>
-<br>
-<br>
-<button style="font-size:  30px;" onclick="pauseAudio()">PAUSE</button>
-<br><br>
-<button style="font-size:  30px;" onclick="stopAudio()">STOP</button>
-获取当前位置：
 <button style="font-size:  30px;" onclick="getCurrentPosition()">获取当前位置信息</button>
 <br>
-获取设备信息：
-<button onclick="onDeviceReady()">设备信息</button>
-<br>
-打开相机：
-<button onclick="camera()">相机</button>
-<br>
-验证指纹：
-<button onclick="fingerTest()">验证</button>
-<br>
-<button onclick="getDirEntry(cordova.file.externalRootDirectory)">GETDIRENTRY</button>
-创建文件:
-<button style="font-size: 30px" onclick="createFile(cordova.file.externalRootDirectory,'text.txt',true,false)">创建文件
-</button>
-<br>
-写入文件：
-<button style="font-size: 30px" onclick="writeFile(cordova.file.externalRootDirectory,'text.txt','1234567890-',true,false,true)">写入文件
-</button>
-<br>
-<button style="font-size: 30px" onclick="readFile(cordova.file.externalRootDirectory,'text.txt',true,false,true)">读取文件
-</button>
-<br>
-<button style="font-size: 30px" onclick="removeFile(cordova.file.externalRootDirectory+'text.txt')">删除文件</button>
-读取DNS：
-<button onclick="DNS()">点击</button>
-<br>
-
-<br>
-<button onclick="scanner()">扫描二维码</button>
-<br>
-<button style='font-size: 30px;'onclick="Notification()">应用提示</button>
-<br>
-
-<br>
-<button onclick="themeableBrowser()">打开网页</button>
-<br>
-<body style="padding-top: 50px"></body>
-<button style="font-size: 30px;" onclick="ImagePicker()">IMAGEPICKER</button>
-<br><br>
-<button style="font-size: 30px;" onclick="showFilepath()">SHOWFILEPATH</button>
-<br><br>
-<button style="font-size:  30px;" onclick="CheckFileChild()">CHECKFILECHILD</button>
 </body>
 </html>
