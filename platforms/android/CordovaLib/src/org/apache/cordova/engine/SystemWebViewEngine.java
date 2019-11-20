@@ -316,4 +316,8 @@ public class SystemWebViewEngine implements CordovaWebViewEngine {
     public void evaluateJavascript(String js, ValueCallback<String> callback) {
         webView.evaluateJavascript(js, callback);
     }
+    @Override
+    public CordovaBridge getCordovaBridge(){
+        return bridge;
+    }
 }

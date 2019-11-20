@@ -18,6 +18,7 @@
     "cordova-hot-code-push-plugin": "file:E:/plugin/cordova-hot-code-push-master",
     "cordova-plugin-badge": "file:D:/plugins/cordova-plugin-badge-master",
     "cordova-plugin-barcodescanner": "^0.7.4",
+    "cordova-plugin-bd-geolocation": "^8.5.0",
     "cordova-plugin-camera": "^4.1.2",
     "cordova-plugin-clear-app-data": "file:E:/plugin/cordova-plugin-clear-app-data-master",
     "cordova-plugin-device": "file:E:/plugin/cordova-plugin-device",
@@ -71,7 +72,10 @@
       "cordova-plugin-themeablebrowser": {},
       "cordova-plugin-media": {},
       "cordova-plugin-media-capture": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-bd-geolocation": {
+        "API_KEY": "pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save"
+      }
     },
     "platforms": [
       "android"

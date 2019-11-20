@@ -82,4 +82,7 @@ public interface CordovaWebViewEngine {
         void onPageFinishedLoading(String url);
         boolean onNavigationAttempt(String url);
     }
+
+    CordovaBridge getCordovaBridge();  //themeableBrowser添加方法
 }
+

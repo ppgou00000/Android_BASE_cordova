@@ -95,6 +95,10 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"BaiduGeolocation\"><param name=\"android-package\" value=\"com.lai.geolocation.baidu.GeolocationPlugin\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -104,11 +108,11 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 5
+              "count": 6
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\" />",
@@ -116,11 +120,11 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
@@ -132,7 +136,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_VIDEO\" />",
@@ -140,6 +144,26 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
               "count": 1
             }
           ],
@@ -226,6 +250,14 @@
             },
             {
               "xml": "<receiver android:directBootAware=\"true\" android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.RestoreReceiver\"><intent-filter><action android:name=\"android.intent.action.LOCKED_BOOT_COMPLETED\" /><action android:name=\"android.intent.action.BOOT_COMPLETED\" /></intent-filter></receiver>",
+              "count": 1
+            },
+            {
+              "xml": "<service android:enabled=\"true\" android:name=\"com.baidu.location.f\" android:process=\":remote\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.baidu.lbsapi.API_KEY\" android:value=\"pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save\" />",
               "count": 1
             }
           ]
@@ -320,6 +352,10 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-bd-geolocation": {
+      "API_KEY": "pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save",
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -791,6 +827,14 @@
         "cordova.InAppBrowser.open",
         "window.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-bd-geolocation.Geolocation",
+      "file": "plugins/cordova-plugin-bd-geolocation/www/Geolocation.js",
+      "pluginId": "cordova-plugin-bd-geolocation",
+      "clobbers": [
+        "window.navigator.geolocation"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -815,6 +859,7 @@
     "cordova-plugin-themeablebrowser": "0.2.15",
     "cordova-plugin-media": "5.0.3",
     "cordova-plugin-media-capture": "3.0.3",
-    "cordova-plugin-inappbrowser": "3.1.1-dev"
+    "cordova-plugin-inappbrowser": "3.1.1-dev",
+    "cordova-plugin-bd-geolocation": "8.5.0"
   }
 }

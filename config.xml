@@ -1,6 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>HelloCordova</name>
+    <!-- android 使用本插件 -->
+    <platform name="android">
+        <plugin name="cordova-plugin-bd-geolocation" spec="^8.5.0">
+            <variable name="API_KEY" value="pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G" />
+        </plugin>
+    </platform>
+    <!-- iOS 使用官方插件 -->
+    <platform name="ios">
+        <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    </platform>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>

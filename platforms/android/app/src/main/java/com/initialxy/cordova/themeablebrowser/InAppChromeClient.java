@@ -18,23 +18,35 @@
 */
 package com.initialxy.cordova.themeablebrowser;
 
+import org.apache.cordova.CordovaBridge;
+import org.apache.cordova.CordovaDialogsHelper;
 import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaWebViewEngine;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.GeolocationPermissions.Callback;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
 
 public class InAppChromeClient extends WebChromeClient {
 
     private CordovaWebView webView;
     private String LOG_TAG = "InAppChromeClient";
     private long MAX_QUOTA = 100 * 1024 * 1024;
+    private static final String NATIVE_JS_PREFIX = "https://native-js/";  //改造
 
     public InAppChromeClient(CordovaWebView webView) {
         super();
@@ -120,13 +132,90 @@ public class InAppChromeClient extends WebChromeClient {
             }
             else
             {
-                // Anything else with a gap: prefix should get this message
-                LOG.w(LOG_TAG, "ThemeableBrowser does not support Cordova API calls: " + url + " " + defaultValue); 
-                result.cancel();
+                CordovaWebViewEngine engine = webView.getEngine();
+                if (engine != null) {
+                    CordovaBridge cordovaBridge = null;
+                    try {
+                        //反射得到CordovaBridge 的对象实例
+                        Field bridge = engine.getClass().getDeclaredField("bridge");
+                        bridge.setAccessible(true);
+                        cordovaBridge = (CordovaBridge) bridge.get(engine);
+                        bridge.setAccessible(false);
+                    } catch (NoSuchFieldException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    if (cordovaBridge != null) {
+                        // Unlike the @JavascriptInterface bridge, this method is always called on the UI thread.
+                        String handledRet = cordovaBridge.promptOnJsPrompt(url, message, defaultValue);
+                        if (handledRet != null) {
+                            result.confirm(handledRet);
+                        } else {
+                            final JsPromptResult final_result = result;
+                            CordovaDialogsHelper dialogsHelper = new CordovaDialogsHelper(webView.getContext());
+                            dialogsHelper.showPrompt(message, defaultValue, new CordovaDialogsHelper.Result() {
+                                @Override
+                                public void gotResult(boolean success, String value) {
+                                    if (success) {
+                                        final_result.confirm(value);
+                                    } else {
+                                        final_result.cancel();
+                                    }
+                                }
+                            });
+                        }
+                    }else {
+                        // Anything else with a gap: prefix should get this message
+                        LOG.w(LOG_TAG, "InAppBrowser does not support Cordova API calls: " + url + " " + defaultValue);
+                        result.cancel();
+                    }
+                }
+                //修改部分
+                //处理 cordova API回调
+                // ----------------start---------------
+                CordovaWebViewEngine Engine = webView.getEngine();
+                if (engine != null) {
+                    CordovaBridge CordovaBridge = Engine.getCordovaBridge();
+                    if (CordovaBridge != null) {
+                        // Unlike the @JavascriptInterface bridge, this method is always called on the UI thread.
+                        String handledRet = CordovaBridge.promptOnJsPrompt(url, message, defaultValue);
+                        if (handledRet != null) {
+                            result.confirm(handledRet);
+                        } else {
+                            final JsPromptResult final_result = result;
+                            CordovaDialogsHelper dialogsHelper = new CordovaDialogsHelper(webView.getContext());
+                            dialogsHelper.showPrompt(message, defaultValue, new CordovaDialogsHelper.Result() {
+                                @Override
+                                public void gotResult(boolean success, String value) {
+                                    if (success) {
+                                        result.confirm(value);
+                                    } else {
+                                        result.cancel();
+                                    }
+                                }
+                            });
+                        }
+                    } else {
+                        // Anything else with a gap: prefix should get this message
+                        LOG.w(LOG_TAG, "InAppBrowser does not support Cordova API calls: " + url + " " + defaultValue);
+                        result.cancel();
+                    }
+                    // Anything else with a gap: prefix should get this message
+//                    LOG.w(LOG_TAG, "InAppBrowser does not support Cordova API calls: " + url + " " + defaultValue);
+//                    result.cancel();
+//                    return true;
+                }
+
                 return true;
             }
         }
         return false;
     }
+
+
+
+
+
 
 }

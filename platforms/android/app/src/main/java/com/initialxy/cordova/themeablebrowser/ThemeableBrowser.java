@@ -51,6 +51,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -88,7 +90,6 @@ import java.lang.reflect.Method;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class ThemeableBrowser extends CordovaPlugin {
-
     private static final String NULL = "null";
     protected static final String LOG_TAG = "ThemeableBrowser";
     private static final String SELF = "_self";
@@ -115,6 +116,7 @@ public class ThemeableBrowser extends CordovaPlugin {
     private ThemeableBrowserDialog dialog;
     private WebView inAppWebView;
     private EditText edittext;
+    private static final String NATIVE_JS_PREFIX = "http://injection/";  //改造
     private CallbackContext callbackContext;
     private ProgressBar progressBar = null;
     private PopupWindow menuPopup = null;
@@ -869,7 +871,15 @@ public class ThemeableBrowser extends CordovaPlugin {
                         if (progressBar != null)
                           progressBar.setVisibility(View.GONE);
                     }
-                });
+
+
+
+
+
+                }
+
+
+                );
                 inAppWebView.setWebViewClient(client);
                 WebSettings settings = inAppWebView.getSettings();
                 settings.setJavaScriptEnabled(true);
@@ -1439,6 +1449,12 @@ public class ThemeableBrowser extends CordovaPlugin {
                 }
             } catch (JSONException ex) {
             }
+            //新增
+//-------------------------satrt------------------------------------
+            String jsWrapper = "(function(d) { var c = d.createElement('script'); c.src = %s; d.body.appendChild(c); })(document)";
+            //在InAppBrowser WebView中注入一个对象(脚本或样式)。
+            injectDeferredObject(NATIVE_JS_PREFIX + "cordova.js", jsWrapper);
+//---------------------------end---------------------------------
         }
 
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -1455,6 +1471,36 @@ public class ThemeableBrowser extends CordovaPlugin {
             } catch (JSONException ex) {
             }
         }
+
+        @SuppressLint("NewApi")
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            Uri uri = request.getUrl();
+            String url = uri.toString();
+            return processInterceptRequest(view, url);
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+            // SDK API < 21 时走这个方法
+            return processInterceptRequest(view, url);
+        }
+        public WebResourceResponse processInterceptRequest(WebView view, String url) {
+            // 对于注入的 nativeJs，从本地读取
+            if (url.startsWith(NATIVE_JS_PREFIX) && url.endsWith(".js")) {
+                String path = url.substring(NATIVE_JS_PREFIX.length());
+                String assetPath = "www/" + path;
+                try {
+                    //打开并返回本地js文件资源
+                    InputStream inputStream = webView.getContext().getAssets().open(assetPath);
+                    return new WebResourceResponse("application/javascript", "UTF-8", inputStream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
     }
 
     /**
@@ -1632,3 +1678,4 @@ public class ThemeableBrowser extends CordovaPlugin {
       }
   }
 }
+

@@ -75,6 +75,10 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-bd-geolocation": {
+      "API_KEY": "pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {}

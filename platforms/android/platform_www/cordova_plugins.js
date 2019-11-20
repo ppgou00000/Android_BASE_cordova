@@ -466,6 +466,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.InAppBrowser.open",
         "window.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-bd-geolocation.Geolocation",
+      "file": "plugins/cordova-plugin-bd-geolocation/www/Geolocation.js",
+      "pluginId": "cordova-plugin-bd-geolocation",
+      "clobbers": [
+        "window.navigator.geolocation"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -490,6 +498,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-themeablebrowser": "0.2.15",
     "cordova-plugin-media": "5.0.3",
     "cordova-plugin-media-capture": "3.0.3",
-    "cordova-plugin-inappbrowser": "3.1.1-dev"
+    "cordova-plugin-inappbrowser": "3.1.1-dev",
+    "cordova-plugin-bd-geolocation": "8.5.0"
   };
 });

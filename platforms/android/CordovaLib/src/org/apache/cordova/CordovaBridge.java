@@ -116,6 +116,11 @@ public class CordovaBridge {
     //you're running Android 4.3 and below in 2017
     @SuppressLint("TrulyRandom")
     int generateBridgeSecret() {
+        //新增
+        //-----------start-----------
+        if (expectedBridgeSecret >= 0)
+            return expectedBridgeSecret;
+        //----------end-----------
         SecureRandom randGen = new SecureRandom();
         expectedBridgeSecret = randGen.nextInt(Integer.MAX_VALUE);
         return expectedBridgeSecret;

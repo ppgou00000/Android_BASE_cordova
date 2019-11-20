@@ -164,7 +164,7 @@
   "cordova-plugin-themeablebrowser": {
     "source": {
       "type": "local",
-      "path": "F:\\base\\basepro\\node_modules\\cordova-plugin-themeablebrowser"
+      "path": "F:\\base\\Android_BASE_cordova\\node_modules\\cordova-plugin-themeablebrowser"
     },
     "is_top_level": true,
     "variables": {}
@@ -192,5 +192,15 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-bd-geolocation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-bd-geolocation"
+    },
+    "is_top_level": true,
+    "variables": {
+      "API_KEY": "pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save"
+    }
   }
 }

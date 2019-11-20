@@ -108,6 +108,32 @@
         }, options)
     }
 
+    function getCurrentPosition(){
+        //定位数据获取成功响应
+         var options = {
+        enableHighAccuracy: true,  // 是否使用 GPS
+                maximumAge:30000,         // 缓存时间
+                timeout:27000,            // 超时时间
+                coorType: 'bd09ll'         // 默认是 gcj02，可填 bd09ll 以获取百度经纬度用于访问百度 API
+    }
+        function onSuccess(position) {
+            alert('纬度: '          + position.coords.latitude          + '\n' +
+                    '经度: '         + position.coords.longitude         + '\n' +
+                    '海拔: '          + position.coords.altitude          + '\n' +
+                    '水平精度: '          + position.coords.accuracy          + '\n' +
+                    '垂直精度: ' + position.coords.altitudeAccuracy  + '\n' +
+                    '方向: '           + position.coords.heading           + '\n' +
+                    '速度: '             + position.coords.speed             + '\n' +
+                    '时间戳: '         + position.timestamp                + '\n');
+        };
+
+        //定位数据获取失败响应
+        function onError(error) {
+            alert(JSON.stringify(error));
+        }
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, [options]);
+    }
+
 
     //设备信息
     document.addEventListener('deviceready', onDeviceReady, false);
@@ -341,7 +367,7 @@
             }
 
             function themeableBrowser() {
-                var ref = cordova.ThemeableBrowser.open('http://www.hanweikeji.com:6020/HWOA_2.0/test.html', "_blank", {
+                var ref = cordova.ThemeableBrowser.open('http://www.hanweikeji.com:6020/Ionic_Base/www/index.html', "_blank", {
                     title: {
                         color: '#000000',
                         showPageTitle: true,
@@ -458,6 +484,28 @@
         }
 
 
+
+
+
+    function ImagePicker() {
+        window.imagePicker.getPicture(
+                function (results) {
+                    for(var i=0;i<results.length;i++){
+                        console.log('Image URI:'+results[i]);
+                        alert("success")
+                    }
+                },function (error) {
+                    console.log('error'+error)
+                    alert("error")
+                },{
+                    maximumImagesCount:10,
+                    width:800,
+                    height:800,
+                    quality:100,
+
+                }
+        )
+    }
 </script>
 </head>
 <body>
@@ -471,7 +519,7 @@
 <br><br>
 <button style="font-size:  30px;" onclick="stopAudio()">STOP</button>
 获取当前位置：
-<button onclick="getPosition()">点击</button>
+<button style="font-size:  30px;" onclick="getCurrentPosition()">获取当前位置信息</button>
 <br>
 获取设备信息：
 <button onclick="onDeviceReady()">设备信息</button>
@@ -509,7 +557,7 @@
 <button onclick="themeableBrowser()">打开网页</button>
 <br>
 <body style="padding-top: 50px"></body>
-<button style="font-size: 30px;" onclick="recordAudio()">RECORDAUDIO</button>
+<button style="font-size: 30px;" onclick="ImagePicker()">IMAGEPICKER</button>
 <br><br>
 <button style="font-size: 30px;" onclick="showFilepath()">SHOWFILEPATH</button>
 <br><br>
