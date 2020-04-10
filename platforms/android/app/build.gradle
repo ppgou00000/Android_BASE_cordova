@@ -102,7 +102,6 @@ ext {
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../cordova-hot-code-push-plugin/hellocordova-chcp.gradle"
 apply from: "../com-sarriaroman-photoviewer/hellocordova-photoviewer.gradle"
-apply from: "../phonegap-plugin-barcodescanner/hellocordova-barcodescanner.gradle"
 apply from: "../cordova-plugin-badge/hellocordova-badge.gradle"
 apply from: "../cordova-plugin-local-notification/hellocordova-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
@@ -302,7 +301,6 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "com.android.support:support-v4:27.+"
-    implementation "com.android.support:support-v4:26.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

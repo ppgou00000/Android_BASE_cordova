@@ -311,14 +311,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
-      "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
-      "pluginId": "phonegap-plugin-barcodescanner",
-      "clobbers": [
-        "cordova.plugins.barcodeScanner"
-      ]
-    },
-    {
       "id": "org.apache.cordova.geolocation.Coordinates",
       "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
       "pluginId": "org.apache.cordova.geolocation",
@@ -474,6 +466,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.navigator.geolocation"
       ]
+    },
+    {
+      "id": "phonegap-plugin-barcodescanner.BarcodeScanner",
+      "file": "plugins/phonegap-plugin-barcodescanner/www/barcodescanner.js",
+      "pluginId": "phonegap-plugin-barcodescanner",
+      "clobbers": [
+        "cordova.plugins.barcodeScanner"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -491,7 +491,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-fingerprint-aio": "2.0.0",
     "com-sarriaroman-photoviewer": "1.2.4",
     "cordova-plugin-dns": "1.0.2",
-    "phonegap-plugin-barcodescanner": "8.1.1-dev",
     "org.apache.cordova.geolocation": "0.3.6",
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.3",
@@ -499,6 +498,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-media": "5.0.3",
     "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-inappbrowser": "3.1.1-dev",
-    "cordova-plugin-bd-geolocation": "8.5.0"
+    "cordova-plugin-bd-geolocation": "8.5.0",
+    "phonegap-plugin-barcodescanner": "4.0.1"
   };
 });

@@ -130,7 +130,7 @@
   "phonegap-plugin-barcodescanner": {
     "source": {
       "type": "local",
-      "path": "F:\\base\\basepro\\node_modules\\phonegap-plugin-barcodescanner"
+      "path": "E:\\CompanyWork\\program\\Android_BASE_cordova\\node_modules\\phonegap-plugin-barcodescanner"
     },
     "is_top_level": true,
     "variables": {}

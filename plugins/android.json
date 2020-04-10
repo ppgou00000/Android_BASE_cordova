@@ -50,10 +50,6 @@
     "cordova-plugin-dns": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
-    "phonegap-plugin-barcodescanner": {
-      "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
     "org.apache.cordova.geolocation": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
@@ -78,6 +74,9 @@
     },
     "cordova-plugin-bd-geolocation": {
       "API_KEY": "pA8RFD2T1Wdfzq8Lys8oApBvTdkgnW5G--save",
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "phonegap-plugin-barcodescanner": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },

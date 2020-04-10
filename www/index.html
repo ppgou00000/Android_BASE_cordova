@@ -110,21 +110,21 @@
 
     function getCurrentPosition(){
         //定位数据获取成功响应
-         var options = {
-        enableHighAccuracy: true,  // 是否使用 GPS
-                maximumAge:30000,         // 缓存时间
-                timeout:27000,            // 超时时间
-                coorType: 'bd09ll'         // 默认是 gcj02，可填 bd09ll 以获取百度经纬度用于访问百度 API
-    }
+        var options = {
+            enableHighAccuracy: true,  // 是否使用 GPS
+            maximumAge:30000,         // 缓存时间
+            timeout:27000,            // 超时时间
+            coorType: 'bd09ll'         // 默认是 gcj02，可填 bd09ll 以获取百度经纬度用于访问百度 API
+        }
         function onSuccess(position) {
             alert('纬度: '          + position.coords.latitude          + '\n' +
-                    '经度: '         + position.coords.longitude         + '\n' +
-                    '海拔: '          + position.coords.altitude          + '\n' +
-                    '水平精度: '          + position.coords.accuracy          + '\n' +
-                    '垂直精度: ' + position.coords.altitudeAccuracy  + '\n' +
-                    '方向: '           + position.coords.heading           + '\n' +
-                    '速度: '             + position.coords.speed             + '\n' +
-                    '时间戳: '         + position.timestamp                + '\n');
+                '经度: '         + position.coords.longitude         + '\n' +
+                '海拔: '          + position.coords.altitude          + '\n' +
+                '水平精度: '          + position.coords.accuracy          + '\n' +
+                '垂直精度: ' + position.coords.altitudeAccuracy  + '\n' +
+                '方向: '           + position.coords.heading           + '\n' +
+                '速度: '             + position.coords.speed             + '\n' +
+                '时间戳: '         + position.timestamp                + '\n');
         };
 
         //定位数据获取失败响应
@@ -242,113 +242,113 @@
 
 
 
-            function removeFile(dirEntryUrl) {
-                alert("findURL")
-                window.resolveLocalFileSystemURL(dirEntryUrl,function (fileEntry) {
-                    fileEntry.remove(function () {
-                        alert("delete success");
-                    },function (err) {
-                        alert("error"+JSON.stringify(err));
-                    },function () {
-                        alert('file not exist')
-                    })
-                })
+    function removeFile(dirEntryUrl) {
+        alert("findURL")
+        window.resolveLocalFileSystemURL(dirEntryUrl,function (fileEntry) {
+            fileEntry.remove(function () {
+                alert("delete success");
+            },function (err) {
+                alert("error"+JSON.stringify(err));
+            },function () {
+                alert('file not exist')
+            })
+        })
+    }
+
+    function downLoad() {
+        var fileTransfer = new FileTransfer();
+        fileTransfer.onprogress = function (e) {
+            console.info(e);
+            if (e.lengthComputable) {
+                console.log(e.loaded / e.total);
             }
-
-            function downLoad() {
-                var fileTransfer = new FileTransfer();
-                fileTransfer.onprogress = function (e) {
-                    console.info(e);
-                    if (e.lengthComputable) {
-                        console.log(e.loaded / e.total);
-                    }
-                }
-                fileTransfer.download(
-                        fileURL = "",
-                        uri = 'qwer',
-                        function (entry) {
-                            console.log(entry.toURL());
-                        },
-                        function (error) {
-                            console.log(error.code);
-                            alert(error.code);
-                        }
-                );
+        }
+        fileTransfer.download(
+            fileURL = "",
+            uri = 'qwer',
+            function (entry) {
+                console.log(entry.toURL());
+            },
+            function (error) {
+                console.log(error.code);
+                alert(error.code);
             }
+        );
+    }
 
-            //展示图片
-            var options = {
-                share: true,
-                closeButton: true,
-                copyToReference: true,
-                headers: '',
-                piccasoOptions: {}
-            };
-            function Show() {
-                PhotoViewer.show("", 'Optional Title', options);
+    //展示图片
+    var options = {
+        share: true,
+        closeButton: true,
+        copyToReference: true,
+        headers: '',
+        piccasoOptions: {}
+    };
+    function Show() {
+        PhotoViewer.show("", 'Optional Title', options);
+    }
+    //获取DNS
+    function DNS() {
+        cordova.plugins.dns.resolve('seed.bitcoin.sipa.be', function (ip) {
+            console.log('Resolved IP address:' + ip);
+            alert(ip);
+        }, function (error) {
+            console.log('Error:' + error);
+        });
+        cordova.plugins.dns.resolveAll('seed.bitcion.sipa.be', function (ips) {
+            ips.forEach(function (ip) {
+                console.log('resolves IP address:' + ip);
+            }, function (error) {
+                console.log('error:' + error)
+            })
+        })
+    }
+
+
+    //  function ImagePicker() {
+    //     window.imagePicker.takePicture(
+    //           function (results) {
+    //             for(var i=0;i<results.length;i++){
+    //               console.log('Image URI:'+results[i]);
+    //         }
+    //   },function (error) {
+    //     console.log('error'+error)
+    //},{
+    //   maximumImagesCount:10,
+    //  width:800
+    // }
+    //  )
+    // }
+    //二维码扫描
+    function scanner() {
+        cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                alert("We got a barcode\n" +
+                    "Result: " + result.text + "\n" +
+                    "Format: " + result.format + "\n" +
+                    "Cancelled: " + result.cancelled);
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
             }
-            //获取DNS
-            function DNS() {
-                cordova.plugins.dns.resolve('seed.bitcoin.sipa.be', function (ip) {
-                    console.log('Resolved IP address:' + ip);
-                    alert(ip);
-                }, function (error) {
-                    console.log('Error:' + error);
-                });
-                cordova.plugins.dns.resolveAll('seed.bitcion.sipa.be', function (ips) {
-                    ips.forEach(function (ip) {
-                        console.log('resolves IP address:' + ip);
-                    }, function (error) {
-                        console.log('error:' + error)
-                    })
-                })
-            }
-
-
-            //  function ImagePicker() {
-            //     window.imagePicker.takePicture(
-            //           function (results) {
-            //             for(var i=0;i<results.length;i++){
-            //               console.log('Image URI:'+results[i]);
-            //         }
-            //   },function (error) {
-            //     console.log('error'+error)
-            //},{
-            //   maximumImagesCount:10,
-            //  width:800
-            // }
-            //  )
-            // }
-            //二维码扫描
-            function scanner() {
-                cordova.plugins.barcodeScanner.scan(
-                        function (result) {
-                            alert("We got a barcode\n" +
-                                    "Result: " + result.text + "\n" +
-                                    "Format: " + result.format + "\n" +
-                                    "Cancelled: " + result.cancelled);
-                        },
-                        function (error) {
-                            alert("Scanning failed: " + error);
-                        }
-                );
-            }
+        );
+    }
 
 
 
-            function Notification() {
+    function Notification() {
 
-                cordova.plugins.notification.local.schedule({
-                    id: 1, title: 'My first notification',
-                    id: 2, title: 'My second notification',
+        cordova.plugins.notification.local.schedule({
+            id: 1, title: 'My first notification',
+            id: 2, title: 'My second notification',
 
-                });
+        });
 
-            }
+    }
 
-            function CheckFileChild(path, successed, failed) {
-                window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + "netease/cloudmusic/music/1.mp3", onFileSystemSuccess, onFileSystemError);
-                function onFileSystemSuccess(fileSystem) {
+    function CheckFileChild(path, successed, failed) {
+        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + "netease/cloudmusic/music/1.mp3", onFileSystemSuccess, onFileSystemError);
+        function onFileSystemSuccess(fileSystem) {
 //             var reader=fileSystem.createReader();
 //             reader.readEntries(success,fail);
 //             function success(entries){
@@ -357,153 +357,149 @@
 //             function fail(entries){
 //                 alert("获取失败")
 //             }
-                    alert(JSON.stringify(fileSystem))
-
-                }
-
-                function onFileSystemError(fileSystem) {
-                    alert("文件获取失败，无文件")
-                }
-            }
-
-            function themeableBrowser() {
-                var ref = cordova.ThemeableBrowser.open('http://www.hanweikeji.com:6020/Ionic_Base/www/index.html', "_blank", {
-                    title: {
-                        color: '#000000',
-                        showPageTitle: true,
-                        staticText: '微工具集首页'
-                    },
-                    closeButton: {
-                        image: 'back',
-                        imagePressed: 'back_pressed',
-                        align: 'left',
-                        event: 'backPressed'
-                    },
-                    toolbar: {
-                        height: 44,
-                        color: '#387EF5'
-                    }
-                })
-            }
-
-
-            //  document.addEventListener("deviceReady", onDeviceReady, false);
-            //  function onDeviceReady() {
-            //     console.log(media);
-            // }
-            //src:包含视频内容的URI
-            var myMedia = null;
-            function playAudio() {
-                var src = cordova.file.externalRootDirectory + "netease/cloudmusic/music/1.mp3";
-
-                if (myMedia == null) {
-                    myMedia = new Media(src, onSuccess, onError);
-                    function onSuccess() {
-                        console.log("playAudio Success");
-                    }
-
-                    function onError(error) {
-                        console.log(" " + error.code);
-                        alert(error.code);
-                    }
-                }
-                myMedia.play();
-                setTimeout(function () {
-                    myMedia.seekTo(60000);
-                }, 10000);
-
-
-                //  setTimeout(function () {
-                //      myMedia.setVolume('0.0')
-                //  },2000);
-                //   setTimeout(function () {
-                //       myMedia.setVolume('0.5')
-                //   },5000);
-            }
-
-            function pauseAudio() {
-                if (myMedia) {
-                    myMedia.pause();
-                }
-            }
-            function stopAudio() {
-                if (myMedia) {
-                    myMedia.stop();
-                }
-                myMedia = null;
-            }
-
-
-            function recordAudio() {
-                var src = cordova.file.externalRootDirectory + "myrecording.mp3";
-                var mediaRecord = new Media(src,
-                        function () {
-                            console.log("recordAudio():Audio Success");
-                            alert("success");
-                        }, function (error) {
-                            console.log("error:" + error.code);
-                            alert(JSON.stringify(error));
-                        }
-                );
-                mediaRecord.startRecord();
-            }
-
-
-            // function audioCapture() {
-            //     var options = {
-            //         limit: 1,
-            //         duration: 10
-            //    };
-            //   navigator.device.capture.captureAudio(onSuccess, onError, options);
-            // function onSuccess(mediaFiles) {
-            //   var i, path, len;
-            // for (i = 0, len=mediaFiles.length; i < len; i += 1) {
-            //   path = mediaFiles[i].fullPath;
-            // console.log(mediaFiles);
-            //     alert("success")
-            // }
-            // }
-
-            //        function onError(err) {
-            //       alert(JSON.stringify(err))
-            //
-            //      }
-            //}
-
-            function showFilepath() {
-                alert(cordova.file.applicationDirectory);
-                alert(cordova.file.applicationStorageDirectory);
-                alert(cordova.file.dataDirectory);
-                alert(cordova.file.cacheDirectory);
-                alert(cordova.file.externalApplicationStorageDirectory);
-                alert(cordova.file.externalDataDirectory);
-                alert(cordova.file.externalCacheDirectory);
-                alert(cordova.file.externalRootDirectory);
-
+            alert(JSON.stringify(fileSystem))
 
         }
 
+        function onFileSystemError(fileSystem) {
+            alert("文件获取失败，无文件")
+        }
+    }
+
+    function themeableBrowser() {
+        var ref = cordova.ThemeableBrowser.open('http://www.hanweikeji.com:6020/Ionic_Base/www/index.html', "_blank", {
+            title: {
+                color: '#000000',
+                showPageTitle: true,
+                staticText: '微工具集首页'
+            },
+            closeButton: {
+                image: 'back',
+                imagePressed: 'back_pressed',
+                align: 'left',
+                event: 'backPressed'
+            },
+            toolbar: {
+                height: 44,
+                color: '#387EF5'
+            }
+        })
+    }
 
 
+    //  document.addEventListener("deviceReady", onDeviceReady, false);
+    //  function onDeviceReady() {
+    //     console.log(media);
+    // }
+    //src:包含视频内容的URI
+    var myMedia = null;
+    function playAudio() {
+        var src = cordova.file.externalRootDirectory + "netease/cloudmusic/music/1.mp3";
 
+        if (myMedia == null) {
+            myMedia = new Media(src, onSuccess, onError);
+            function onSuccess() {
+                console.log("playAudio Success");
+            }
+
+            function onError(error) {
+                console.log(" " + error.code);
+                alert(error.code);
+            }
+        }
+        myMedia.play();
+        setTimeout(function () {
+            myMedia.seekTo(60000);
+        }, 10000);
+
+
+        //  setTimeout(function () {
+        //      myMedia.setVolume('0.0')
+        //  },2000);
+        //   setTimeout(function () {
+        //       myMedia.setVolume('0.5')
+        //   },5000);
+    }
+
+    function pauseAudio() {
+        if (myMedia) {
+            myMedia.pause();
+        }
+    }
+    function stopAudio() {
+        if (myMedia) {
+            myMedia.stop();
+        }
+        myMedia = null;
+    }
+
+
+    function recordAudio() {
+        var src = cordova.file.externalRootDirectory + "myrecording.mp3";
+        var mediaRecord = new Media(src,
+            function () {
+                console.log("recordAudio():Audio Success");
+                alert("success");
+            }, function (error) {
+                console.log("error:" + error.code);
+                alert(JSON.stringify(error));
+            }
+        );
+        mediaRecord.startRecord();
+    }
+
+
+    // function audioCapture() {
+    //     var options = {
+    //         limit: 1,
+    //         duration: 10
+    //    };
+    //   navigator.device.capture.captureAudio(onSuccess, onError, options);
+    // function onSuccess(mediaFiles) {
+    //   var i, path, len;
+    // for (i = 0, len=mediaFiles.length; i < len; i += 1) {
+    //   path = mediaFiles[i].fullPath;
+    // console.log(mediaFiles);
+    //     alert("success")
+    // }
+    // }
+
+    //        function onError(err) {
+    //       alert(JSON.stringify(err))
+    //
+    //      }
+    //}
+
+    function showFilepath() {
+        alert(cordova.file.applicationDirectory);
+        alert(cordova.file.applicationStorageDirectory);
+        alert(cordova.file.dataDirectory);
+        alert(cordova.file.cacheDirectory);
+        alert(cordova.file.externalApplicationStorageDirectory);
+        alert(cordova.file.externalDataDirectory);
+        alert(cordova.file.externalCacheDirectory);
+        alert(cordova.file.externalRootDirectory);
+
+
+    }
 
     function ImagePicker() {
         window.imagePicker.getPicture(
-                function (results) {
-                    for(var i=0;i<results.length;i++){
-                        console.log('Image URI:'+results[i]);
-                        alert("success")
-                    }
-                },function (error) {
-                    console.log('error'+error)
-                    alert("error")
-                },{
-                    maximumImagesCount:10,
-                    width:800,
-                    height:800,
-                    quality:100,
-
+            function (results) {
+                for(var i=0;i<results.length;i++){
+                    console.log('Image URI:'+results[i]);
+                    alert("success")
                 }
+            },function (error) {
+                console.log('error'+error)
+                alert("error")
+            },{
+                maximumImagesCount:10,
+                width:800,
+                height:800,
+                quality:100,
+
+            }
         )
     }
 </script>

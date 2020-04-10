@@ -1,0 +1,13 @@
+1、下载ant的安装包，这里是地址，下完后解压缩。
+2、配置环境变量（目的是使用ant命令），如何添加环境变量不多说，每个人的shell配置文件不同
+vi ~/.zshrc
+# ==> 添加下列代码（注意修改自己的路径）
+# ant
+export ANT_HOME=/Users/mrchen/Applications/apache-ant
+export PATH=$PATH:$ANT_HOME/bin
+3、打开新terminal窗口，ant -version，查看是否配置正确。
+4、进入LibraryProject目录下，使用ant命令打包jar文件。
+cd LibraryProject
+ant ij-release
+5、生成的jar文件在：LibraryProject/bin/classes.jar
+6、将该文件重命名并覆盖com.google.zxing.client.android.capture.jar文件即可。

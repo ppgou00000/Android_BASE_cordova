@@ -1,13 +1,16 @@
 {
   "name": "phonegap-plugin-barcodescanner",
-  "version": "8.1.1-dev",
+  "version": "4.0.1",
   "description": "You can use the BarcodeScanner plugin to scan different types of barcodes (using the device's camera) and get the metadata encoded in them for processing within your application.",
   "cordova": {
     "id": "phonegap-plugin-barcodescanner",
     "platforms": [
       "ios",
       "android",
+      "windows8",
       "windows",
+      "wp8",
+      "blackberry10",
       "browser"
     ]
   },
@@ -20,43 +23,22 @@
     "ecosystem:phonegap",
     "cordova-ios",
     "cordova-android",
+    "cordova-windows8",
     "cordova-windows",
-    "cordova-browser",
-    "cordova:plugin"
+    "cordova-wp8",
+    "cordova-blackberry10",
+    "cordova-browser"
   ],
-  "engines": {
-    "cordovaDependencies": {
-      "<7.0.0": {
-        "cordova-android": "<6.3.0"
-      },
-      "7.0.0": {
-        "cordova-android": ">=6.3.0"
-      },
-      "7.1.0": {
-        "cordova-android": ">=6.3.0",
-        "cordova": ">=7.1.0"
-      },
-      "8.0.0": {
-        "cordova-android": ">=6.3.0",
-        "cordova": ">=7.1.0"
-      }
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
     }
-  },
+  ],
   "author": "Adobe PhoneGap Team",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner/issues"
   },
-  "homepage": "https://github.com/phonegap/phonegap-plugin-barcodescanner#readme",
-  "scripts": {
-    "test": "jasmine-node --color spec"
-  },
-  "devDependencies": {
-    "jasmine-node": "1.14.5",
-    "pluginpub": "^0.0.9"
-  },
-  "dependencies": {
-    "nopt": "^4.0.1",
-    "shelljs": "^0.8.3"
-  }
+  "homepage": "https://github.com/phonegap/phonegap-plugin-barcodescanner#readme"
 }

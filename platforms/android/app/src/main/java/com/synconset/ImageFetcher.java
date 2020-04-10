@@ -16,6 +16,21 @@
 
 package com.synconset;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -24,22 +39,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.Matrix;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 /**
  * This helper class download images from the Internet and binds those with the
